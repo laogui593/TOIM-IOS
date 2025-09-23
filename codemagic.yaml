@@ -7,9 +7,6 @@ workflows:
         vars:
           XCODE_WORKSPACE: "OpenIMSDKUIKit.xcworkspace" # <-- Put the name of your workspace here. 
           XCODE_SCHEME: "OpenIMSDKUIKit_Example" # <-- Put the name of your scheme here.
-          CODE_SIGNING_CERTIFICATE: "$HOME/clone/toim.p12"
-          PROVISIONING_PROFILE: "$HOME/clone/toim.mobileprovision"
-          CERTIFICATE_PASSWORD: "CERTIFICATE_PASSWORD"
         cocoapods: default
       triggering:
         events:
@@ -30,13 +27,10 @@ workflows:
             PROVISIONING_PROFILE="$HOME/clone/toim.mobileprovision"
             PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
             mkdir -p "$PROFILES_HOME"
-            PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
-            echo ${PROVISIONING_PROFILE} | base64 --decode > "$PROFILE_PATH"
-            echo "Saved provisioning profile $PROFILE_PATH"
+            cp "$PROVISIONING_PROFILE" "$PROFILES_HOME/"
         - name: Add signing certificate to keychain
           script: |
-            echo $CODE_SIGNING_CERTIFICATE | base64 --decode > /tmp/certificate.p12
-            keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CERTIFICATE_PASSWORD
+            keychain add-certificates --certificate "$CODE_SIGNING_CERTIFICATE" --certificate-password "$CERTIFICATE_PASSWORD"
         - name: Increment build number
           script: |
             # increment build number

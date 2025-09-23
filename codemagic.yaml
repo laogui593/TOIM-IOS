@@ -70,4 +70,4 @@ workflows:
             - user2@example.com
           notify:
             success: true
-            ailure: true              
+             ailure: true              

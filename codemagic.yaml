@@ -7,7 +7,6 @@ workflows:
         vars:
           XCODE_WORKSPACE: "OpenIMSDKUIKit.xcworkspace" # <-- Put the name of your workspace here. 
           XCODE_SCHEME: "OpenIMSDKUIKit_Example" # <-- Put the name of your scheme here.
-        Xcode: 16.1
         cocoapods: default
       triggering:
         events:

@@ -25,6 +25,7 @@ workflows:
           script: |
             CODE_SIGNING_CERTIFICATE="$HOME/clone/toim.p12"
             PROVISIONING_PROFILE="$HOME/clone/toim.mobileprovision"
+            FCI_BUILD_DIR="$HOME/clone/Example"
             PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
             mkdir -p "$PROFILES_HOME"
             cp "$PROVISIONING_PROFILE" "$PROFILES_HOME/"

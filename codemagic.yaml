@@ -7,6 +7,8 @@ workflows:
         vars:
           XCODE_WORKSPACE: "OpenIMSDKUIKit.xcworkspace" # <-- Put the name of your workspace here. 
           XCODE_SCHEME: "OpenIMSDKUIKit_Example" # <-- Put the name of your scheme here.
+          CODE_SIGNING_CERTIFICATE: "$HOME/clone/toim.p12"
+          PROVISIONING_PROFILE: "$HOME/clone/toim.mobileprovision"
         cocoapods: default
       triggering:
         events:

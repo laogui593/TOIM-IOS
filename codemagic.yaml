@@ -9,6 +9,7 @@ workflows:
           XCODE_SCHEME: "OpenIMSDKUIKit_Example" # <-- Put the name of your scheme here.
           CODE_SIGNING_CERTIFICATE: "$HOME/clone/toim.p12"
           PROVISIONING_PROFILE: "$HOME/clone/toim.mobileprovision"
+          CERTIFICATE_PASSWORD: "CERTIFICATE_PASSWORD"
         cocoapods: default
       triggering:
         events:

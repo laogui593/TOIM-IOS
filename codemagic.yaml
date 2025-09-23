@@ -1,10 +1,9 @@
 workflows:
     ios-swiftly:
-      name: ios_swiftly
+      name: ios_toim
       environment:
         groups:
-        # Add the group environment variables in Codemagic UI (either in Application/Team variables) - https://docs.codemagic.io/variables/environment-variable-groups/
-          - appstore_credentials # <-- (Includes CODE_SIGNING_CERTIFICATE, CERTIFICATE_PASSWORD, PROVISIONING_PROFILE)
+          - appstore_credentials
         vars:
           XCODE_WORKSPACE: "OpenIMSDKUIKit.xcworkspace" # <-- Put the name of your workspace here. 
           XCODE_SCHEME: "OpenIMSDKUIKit_Example" # <-- Put the name of your scheme here.

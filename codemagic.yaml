@@ -41,10 +41,10 @@ workflows:
               -workspace "$XCODE_WORKSPACE" \
               -scheme "$XCODE_SCHEME" \
               | grep CODE_SIGN_IDENTITY
-xcodebuild -showBuildSettings \
-    -workspace "$XCODE_WORKSPACE" \
-    -scheme "$XCODE_SCHEME" \
-    | grep PROVISIONING_PROFILE
+            xcodebuild -showBuildSettings \
+              -workspace "$XCODE_WORKSPACE" \
+              -scheme "$XCODE_SCHEME" \
+              | grep PROVISIONING_PROFILE
         - name: Increment build number
           script: |
             # increment build number
@@ -64,7 +64,7 @@ xcodebuild -showBuildSettings \
         - build/ios/ipa/*.ipa
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
       publishing:
-        email:
+        emai
             recipients:
               - user1@example.com
               - user2@example.com

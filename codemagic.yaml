@@ -34,7 +34,7 @@ workflows:
 
       - name: Add signing certificate to keychain
         script: |
-          keychain add-certificates --certificate "$CODE_SIGNING_CERTIFICATE" --certificate-password "$CERTIFICATE_PASSWORD"
+          keychain add-certificates --certificate /Users/builder/clone/toim.p12 --certificate-password "$CERTIFICATE_PASSWORD"
 
       - name: Increment build number
         script: |

@@ -4,11 +4,11 @@ workflows:
       environment:
         groups:
         # Add the group environment variables in Codemagic UI (either in Application/Team variables) - https://docs.codemagic.io/variables/environment-variable-groups/
-          - appstore_credentials # <-- (Includes CM_IOS_CODE_SIGNING_CERTIFICATE, CERTIFICATE_PASSWORD, CM_IOS_PROVISIONING_PROFILE)
-          - other
+          - appstore_credentials # <-- (Includes CODE_SIGNING_CERTIFICATE, CERTIFICATE_PASSWORD, PROVISIONING_PROFILE)
         vars:
           XCODE_WORKSPACE: "OpenIMSDKUIKit.xcworkspace" # <-- Put the name of your workspace here. 
           XCODE_SCHEME: "OpenIMSDKUIKit_Example" # <-- Put the name of your scheme here.
+        Xcode: 16.1
         cocoapods: default
       triggering:
         events:

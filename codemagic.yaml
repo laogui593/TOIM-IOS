@@ -23,8 +23,8 @@ workflows:
             keychain initialize
         - name: set up provisioning profiles
           script: |
-            CODE_SIGNING_CERTIFICATE=/Users/builder/clone/toim.p12
-            PROVISIONING_PROFILE=/Users/builder/clone/toim.mobileprovision
+            CODE_SIGNING_CERTIFICATE="$HOME/clone/toim.p12"
+            PROVISIONING_PROFILE="$HOME/clone/toim.mobileprovision"
             PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
             mkdir -p "$PROFILES_HOME"
             PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"

@@ -31,7 +31,20 @@ workflows:
             cp "$PROVISIONING_PROFILE" "$PROFILES_HOME/"
         - name: Add signing certificate to keychain
           script: |
-            keychain add-certificates --certificate /Users/builder/clone/toim.p12 --certificate-password "$CERTIFICATE_PASSWORD"
+            echo "Saved provisioning profile to $PROFILES_HOME"
+            echo "$CERTIFICATE_PATH" | base64 --decode > /tmp/certificate.p12
+            keychain add-certificates \
+              --certificate /tmp/certificate.p12 \
+              --certificate-password "$CERTIFICATE_PASSWORD"
+            echo "Certificate added to keychain"
+            xcodebuild -showBuildSettings \
+              -workspace "$XCODE_WORKSPACE" \
+              -scheme "$XCODE_SCHEME" \
+              | grep CODE_SIGN_IDENTITY
+xcodebuild -showBuildSettings \
+    -workspace "$XCODE_WORKSPACE" \
+    -scheme "$XCODE_SCHEME" \
+    | grep PROVISIONING_PROFILE
         - name: Increment build number
           script: |
             # increment build number

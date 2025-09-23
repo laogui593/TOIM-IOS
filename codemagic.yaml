@@ -4,7 +4,7 @@ workflows:
       environment:
         groups:
         # Add the group environment variables in Codemagic UI (either in Application/Team variables) - https://docs.codemagic.io/variables/environment-variable-groups/
-          - wenqiang Luo # <-- (Includes CM_IOS_CODE_SIGNING_CERTIFICATE, CERTIFICATE_PASSWORD, CM_IOS_PROVISIONING_PROFILE)
+          - appstore_credentials # <-- (Includes CM_IOS_CODE_SIGNING_CERTIFICATE, CERTIFICATE_PASSWORD, CM_IOS_PROVISIONING_PROFILE)
           - other
         vars:
           XCODE_WORKSPACE: "OpenIMSDKUIKit.xcworkspace" # <-- Put the name of your workspace here. 
@@ -28,11 +28,11 @@ workflows:
             PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
             mkdir -p "$PROFILES_HOME"
             PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
-            echo ${CM_IOS_PROVISIONING_PROFILE} | base64 --decode > "$PROFILE_PATH"
+            echo ${PROVISIONING_PROFILE} | base64 --decode > "$PROFILE_PATH"
             echo "Saved provisioning profile $PROFILE_PATH"
         - name: Add signing certificate to keychain
           script: |
-            echo $CM_IOS_CODE_SIGNING_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+            echo $CODE_SIGNING_CERTIFICATE | base64 --decode > /tmp/certificate.p12
             keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CERTIFICATE_PASSWORD
         - name: Increment build number
           script: |

@@ -58,8 +58,15 @@ class GroupApplicationViewModel {
 
     func acceptApplicationWith(groupId: String, fromUserId: String) {
         IMController.shared.acceptGroupApplication(groupID: groupId, fromUserId: fromUserId) { [weak self] _ in
-
             NotificationCenter.default.post(name: ContactsViewModel.NotificationApplicationCountChanged, object: nil)
+            self?.getGroupApplications()
+        }
+    }
+    
+    func refuseApplicationWith(groupId: String, fromUserId: String) {
+        IMController.shared.refuseGroupApplication(groupID: groupId, fromUserId: fromUserId) { [weak self] _ in
+            NotificationCenter.default.post(name: ContactsViewModel.NotificationApplicationCountChanged, object: nil)
+            self?.getGroupApplications()
         }
     }
     

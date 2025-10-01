@@ -51,6 +51,14 @@ class NewFriendListViewModel {
         })
     }
     
+    func refuseFriendWith(uid: String) {
+        IMController.shared.refuseFriendApplication(uid: uid, completion: { [weak self] (_: String?) in
+            self?.getNewFriendApplications()
+
+            NotificationCenter.default.post(name: ContactsViewModel.NotificationApplicationCountChanged, object: nil)
+        })
+    }
+    
     func isSendOut(userID: String) -> Bool {
         userID == IMController.shared.uid
     }
